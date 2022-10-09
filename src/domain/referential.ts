@@ -1,5 +1,6 @@
 export type InformationRubricDefinition = {
   property: string;
+  regexExtractor?: RegExp;
 };
 
 export interface InformationRubricValue extends InformationRubricDefinition {

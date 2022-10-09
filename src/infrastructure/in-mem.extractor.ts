@@ -1,6 +1,8 @@
+import { isPropertyAccessChain } from 'typescript';
 import { Company } from '../domain/company/company';
 import { CompanyInformation } from '../domain/company/company-informations/company-information';
 import { InformationExtractor } from '../domain/interfaces/extractor.interface';
+
 import { InformationReferential } from '../domain/referential';
 
 export class InMemInformationExtractor extends InformationExtractor {
@@ -26,7 +28,10 @@ export class InMemInformationExtractor extends InformationExtractor {
 
     for (const rubric of this.referential.rubrics) {
       for (const information of gatheredElement)
-        if (rubric.property === information.property) {
+        if (rubric.property === information.informationProperty) {
+          if (rubric.regexExtractor) {
+            information.refineContent(rubric.regexExtractor);
+          }
           companyInformations.push(information);
         }
     }

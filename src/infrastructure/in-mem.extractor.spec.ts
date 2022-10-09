@@ -31,9 +31,9 @@ describe('Extractor', () => {
     expect(companyInformations.length).toEqual(1);
   });
   it('should get informations from a specified referential', () => {
-    const companyInformations = extractor.extractCompanyInformations('company test');
     const notExistingInReferential = new CompanyInformation('notExisting', 'value');
     company.add([notExistingInReferential]);
+    const companyInformations = extractor.extractCompanyInformations('company test');
 
     expect(companyInformations.length).toEqual(1);
     expect(companyInformations[0]).toEqual(companyInformation);
