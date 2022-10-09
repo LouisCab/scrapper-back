@@ -1,14 +1,23 @@
 import { Company } from '../domain/company/company';
 import { CompanyInformation } from '../domain/company/company-informations/company-information';
 import { InMemInformationExtractor } from './in-mem.extractor';
+import { InformationReferential } from '../domain/referential';
+
 describe('Extractor', () => {
   let extractor: InMemInformationExtractor;
+  let referential: InformationReferential;
   const companyInformation = new CompanyInformation('property1', 'value');
   const company = new Company('company test', [companyInformation]);
+
   beforeEach(() => {
-    extractor = new InMemInformationExtractor();
+    referential = new InformationReferential([
+      { property: 'property1' },
+      { property: 'property2' },
+    ]);
+    extractor = new InMemInformationExtractor(referential);
     extractor.setCompanyInformation(company);
   });
+
   it('should show error if there is no information gathered for specified company', () => {
     expect(() => {
       extractor.extractCompanyInformations('test');
@@ -21,3 +30,12 @@ describe('Extractor', () => {
     const companyInformations = extractor.extractCompanyInformations('company test');
     expect(companyInformations.length).toEqual(1);
   });
+  it('should get informations from a specified referential', () => {
+    const companyInformations = extractor.extractCompanyInformations('company test');
+    const notExistingInReferential = new CompanyInformation('notExisting', 'value');
+    company.add([notExistingInReferential]);
+
+    expect(companyInformations.length).toEqual(1);
+    expect(companyInformations[0]).toEqual(companyInformation);
+  });
+});

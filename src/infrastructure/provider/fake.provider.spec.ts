@@ -1,15 +1,20 @@
 import { InMemInformationExtractor } from '../in-mem.extractor';
 import { Company } from '../../domain/company/company';
 import { CompanyInformation } from '../../domain/company/company-informations/company-information';
+import { FakeInformationProvider } from './fake.provider';
+import { InformationReferential } from '../../domain/referential';
 import { InformationProvider } from '../../domain/interfaces/provider.interface';
+
 describe('Information provider', () => {
   let provider: InformationProvider;
   let extractor: InMemInformationExtractor;
+  let referential: InformationReferential;
   const companyInformation = new CompanyInformation('key', 'value');
   const company = new Company('company test', [companyInformation]);
+
   beforeEach(() => {
-    
-    extractor = new InMemInformationExtractor();
+    referential = new InformationReferential([{ property: 'key' }]);
+    extractor = new InMemInformationExtractor(referential);
     provider = new FakeInformationProvider(extractor);
     extractor.setCompanyInformation(company);
   });

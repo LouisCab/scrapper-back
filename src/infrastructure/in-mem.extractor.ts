@@ -1,9 +1,10 @@
 import { Company } from '../domain/company/company';
 import { CompanyInformation } from '../domain/company/company-informations/company-information';
 import { InformationExtractor } from '../domain/interfaces/extractor.interface';
+import { InformationReferential } from '../domain/referential';
 
 export class InMemInformationExtractor extends InformationExtractor {
-  constructor() {
+  constructor(private readonly referential: InformationReferential) {
     super();
   }
   storage = new Map<string, CompanyInformation[]>();
@@ -23,6 +24,13 @@ export class InMemInformationExtractor extends InformationExtractor {
       throw Error(`Company ${companyName} has no informations available`);
     }
 
-    return gatheredElement;
+    for (const rubric of this.referential.rubrics) {
+      for (const information of gatheredElement)
+        if (rubric.property === information.property) {
+          companyInformations.push(information);
+        }
+    }
+
+    return companyInformations;
   }
 }
