@@ -1,0 +1,19 @@
+{
+  "name": "cleanArchi",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "devDependencies": {
+    "typescript": "^4.7.3"
+  },
+  "dependencies": {
+    "@types/jest": "^28.1.1",
+    "jest": "^28.1.1",
+    "node-notifier": "^10.0.1",
+    "ts-jest": "^28.0.4"
+  },
+  "scripts": {
+    "test": "jest",
+    "build": "tsc"
+  }
+}
