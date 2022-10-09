@@ -5,8 +5,8 @@ import { InformationProvider } from '../../domain/interfaces/provider.interface'
 export class FakeInformationProvider implements InformationProvider {
   constructor(private readonly extractor: InformationExtractor) {}
 
-  getCompany(companyName: string): Company {
-    const informations = this.extractor.extractCompanyInformations(companyName);
+  async getCompany(companyName: string): Promise<Company> {
+    const informations = await this.extractor.extractCompanyInformations(companyName);
     if (!informations) {
       throw new Error(`No information retrieved for ${companyName} input`);
     }
