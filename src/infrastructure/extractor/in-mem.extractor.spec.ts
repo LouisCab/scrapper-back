@@ -11,8 +11,8 @@ describe('Extractor', () => {
 
   beforeEach(() => {
     referential = new InformationReferential([
-      { property: 'property1' },
-      { property: 'property2' },
+      { property: 'property1', selector: '', htmlMarkupAttribute: '' },
+      { property: 'property2', selector: '', htmlMarkupAttribute: '' },
     ]);
     extractor = new InMemInformationExtractor(referential);
     extractor.setCompanyInformation(company);

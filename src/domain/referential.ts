@@ -1,13 +1,9 @@
 export type InformationRubricDefinition = {
+  htmlMarkupAttribute: string;
+  selector: string;
   property: string;
   regexExtractor?: RegExp;
 };
-
-export interface InformationRubricValue extends InformationRubricDefinition {
-  rawValue: string;
-}
-
-export type InformationRubricValueDefinition = InformationRubricValue[];
 
 export type InformationReferentialDefinition = InformationRubricDefinition[];
 
