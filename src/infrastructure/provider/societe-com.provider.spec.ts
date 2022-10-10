@@ -1,11 +1,10 @@
-import { Company } from '../../domain/company/company';
 import { CompanyInformation } from '../../domain/company/company-informations/company-information';
 import { InformationCrawler } from '../../domain/interfaces/crawler.interface';
 import { InformationExtractor } from '../../domain/interfaces/extractor.interface';
 import { InformationProvider } from '../../domain/interfaces/provider.interface';
 import { CompanyInformationsFixtures } from '../../test/CompanyInformationsFixtures';
-import { PuppeteerInformationCrawler } from '../crawler/puppeteer.crawler';
-import { PuppeteerInformationExtractor } from '../extractor/puppeteer.extractor';
+import { SocieteComPuppeteerInformationCrawler } from '../crawler/societe-com.puppeteer.crawler';
+import { SocieteComPuppeteerInformationExtractor } from '../extractor/societe-com.puppeteer.extractor';
 import { societeComInformationReferential } from '../referential/societe-com.referential';
 import { SocieteComInformationProvider } from './societe-com.provider';
 
@@ -16,8 +15,8 @@ describe('Societe com provider', () => {
   let extractor: InformationExtractor;
 
   beforeEach(() => {
-    crawler = new PuppeteerInformationCrawler();
-    extractor = new PuppeteerInformationExtractor(
+    crawler = new SocieteComPuppeteerInformationCrawler();
+    extractor = new SocieteComPuppeteerInformationExtractor(
       societeComInformationReferential,
       crawler,
     );
@@ -26,7 +25,9 @@ describe('Societe com provider', () => {
   it('should retrieve all aimed information on page for specified company', async () => {
     const companyName = '365Talents';
     const expectedCompanyInformations =
-      CompanyInformationsFixtures.simpleSocieteCom365Talents;
+      CompanyInformationsFixtures.simpleSocieteCom365Talents.map((elem) => {
+        return new CompanyInformation(elem.property, elem.content);
+      });
     const companyInformations = await provider.getCompanyInformations(
       companyName,
     );

@@ -3,7 +3,7 @@ import { InformationCrawler } from '../../domain/interfaces/crawler.interface';
 import { InformationExtractor } from '../../domain/interfaces/extractor.interface';
 import { InformationReferential } from '../../domain/referential';
 
-export class PuppeteerInformationExtractor extends InformationExtractor {
+export class SocieteComPuppeteerInformationExtractor extends InformationExtractor {
   constructor(
     private readonly referential: InformationReferential,
     private readonly crawler: InformationCrawler,

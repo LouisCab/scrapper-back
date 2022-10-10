@@ -1,5 +1,4 @@
 import { CompanyInformation } from 'src/domain/company/company-informations/company-information';
-import { constants } from '../../constants';
 import { InformationCrawler } from '../../domain/interfaces/crawler.interface';
 import { InformationExtractor } from '../../domain/interfaces/extractor.interface';
 import { InformationProvider } from '../../domain/interfaces/provider.interface';
@@ -12,12 +11,7 @@ export class SocieteComInformationProvider implements InformationProvider {
   async getCompanyInformations(
     companyName: string,
   ): Promise<CompanyInformation[]> {
-    await this.crawler.initBrowser();
-    await this.crawler.goto(constants.GOOGLE_SEARCH_SOCIETE_COM + companyName);
-    await this.crawler.consentCookies(constants.GOOGLE_CONSENT);
-    await this.crawler.gotoFirstResult(constants.GOOGLE_FIRST_RESULT);
-    await this.crawler.consentCookies(constants.SOCIETE_COM_CONSENT);
-
+    await this.crawler.reachInformationScenario(companyName);
     const informations = await this.extractor.extractCompanyInformations(
       companyName,
     );
