@@ -4,9 +4,9 @@ export const LINKEDIN_IDENTIFY_BUTTON =
   '#main-content > div > form > p > button';
 export const LINKEDIN_AUTHWALL = 'https://www.linkedin.com/authwall';
 
-export const LINKEDIN_USERNAME = '#session_key';
+export const LINKEDIN_USERNAME_INPUT = '#session_key';
 
-export const LINKEDIN_PASSWORD = '#session_password';
+export const LINKEDIN_PASSWORD_INPUT = '#session_password';
 export const LINKEDIN_AUTHENTICATION_BUTTON =
   '#main-content > div > div > div > form > button';
 export const LINKEDIN_ABOUT_US_BUTTON =

@@ -6,11 +6,11 @@ import {
 } from '../referential/constants/google.constant';
 import {
   LINKEDIN_IDENTIFY_BUTTON,
-  LINKEDIN_USERNAME,
-  LINKEDIN_PASSWORD,
   LINKEDIN_AUTHENTICATION_BUTTON,
   LINKEDIN_AUTHWALL,
   LINKEDIN_ABOUT_US_BUTTON,
+  LINKEDIN_USERNAME_INPUT,
+  LINKEDIN_PASSWORD_INPUT,
 } from '../referential/constants/linkedin.constant';
 import {
   ElementNotFoundError,
@@ -23,10 +23,14 @@ export class LinkedinPuppeteerInformationCrawler extends PuppeteerInformationCra
   }
   async authenticate() {
     await this.page.click(LINKEDIN_IDENTIFY_BUTTON);
-    await this.page.type(LINKEDIN_USERNAME, 'louiscabirol@yahoo.fr');
-    await this.page.type(LINKEDIN_PASSWORD, 'dLHSGn8SX!!4mM9P');
+    await this.page.type(LINKEDIN_USERNAME_INPUT, process.env.LINKEDIN_LOGIN);
+    await this.page.type(
+      LINKEDIN_PASSWORD_INPUT,
+      process.env.LINKEDIN_PASSWORD,
+    );
     await this.page.waitForSelector(LINKEDIN_AUTHENTICATION_BUTTON);
     await this.page.click(LINKEDIN_AUTHENTICATION_BUTTON);
+    // )) as unknown as puppeteer.ElementHandle<HTMLElement>;
     await this.page.waitForNavigation();
     await this.page.setCookie();
   }
