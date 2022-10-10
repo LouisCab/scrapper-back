@@ -25,6 +25,7 @@ export class LinkedinPuppeteerInformationCrawler extends PuppeteerInformationCra
     await this.page.click(LINKEDIN_IDENTIFY_BUTTON);
     await this.page.type(LINKEDIN_USERNAME, 'louiscabirol@yahoo.fr');
     await this.page.type(LINKEDIN_PASSWORD, 'dLHSGn8SX!!4mM9P');
+    await this.page.waitForSelector(LINKEDIN_AUTHENTICATION_BUTTON);
     await this.page.click(LINKEDIN_AUTHENTICATION_BUTTON);
     await this.page.waitForNavigation();
     await this.page.setCookie();

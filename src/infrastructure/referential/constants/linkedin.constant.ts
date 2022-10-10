@@ -1,7 +1,7 @@
 export const LINKEDIN_SELECTOR =
   '#main-content > section > div > section > div';
 export const LINKEDIN_IDENTIFY_BUTTON =
-  '#main - content > div > form > p > button';
+  '#main-content > div > form > p > button';
 export const LINKEDIN_AUTHWALL = 'https://www.linkedin.com/authwall';
 
 export const LINKEDIN_USERNAME = '#session_key';

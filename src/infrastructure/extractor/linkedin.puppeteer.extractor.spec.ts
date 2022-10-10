@@ -21,10 +21,10 @@ describe('LinkedinPuppeteer extractor', () => {
       societeComInformationReferential,
       crawler,
     );
-    await initCrawler();
   });
 
   it('should retrieve all aimed information', async () => {
+    await initCrawler();
     const expectedCompanyInformations =
       CompanyInformationsFixtures.simpleSocieteCom365Talents.map((elem) => {
         return new CompanyInformation(elem.property, elem.content);

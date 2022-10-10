@@ -20,7 +20,6 @@ export class LinkedinInformationProvider implements InformationProvider {
     if (!informations) {
       throw new Error(`No information retrieved for ${companyName} input`);
     }
-    console.log(informations);
     return informations;
   }
 }
