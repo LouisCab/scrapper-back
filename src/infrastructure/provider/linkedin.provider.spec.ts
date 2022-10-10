@@ -16,21 +16,20 @@ describe('Societe com provider', () => {
 
   beforeEach(() => {
     crawler = new PuppeteerInformationCrawler();
-    extractor = new PuppeteerInformationExtractor(linkedinInformationReferential, crawler);
+    extractor = new PuppeteerInformationExtractor(
+      linkedinInformationReferential,
+      crawler,
+    );
     provider = new LinkedinInformationProvider(extractor, crawler);
   });
   it('should retrieve all aimed information on page for specified company', async () => {
     const companyName = '365Talents';
-    const companyInformations = CompanyInformationsFixtures.simpleLinkedin365Talents;
-    const company = await provider.getCompany(companyName);
-
-    const expectedCompany = new Company(
+    const expectedCompanyInformations =
+      CompanyInformationsFixtures.simpleLinkedin365Talents;
+    const companyInformations = await provider.getCompanyInformations(
       companyName,
-      companyInformations.map((elem) => {
-        return new CompanyInformation(elem.property, elem.content);
-      })
     );
 
-    expect(company).toEqual(expectedCompany);
+    expect(companyInformations).toEqual(expectedCompanyInformations);
   });
 });

@@ -7,31 +7,30 @@ import { CompanyInformationsFixtures } from '../../test/CompanyInformationsFixtu
 import { PuppeteerInformationCrawler } from '../crawler/puppeteer.crawler';
 import { PuppeteerInformationExtractor } from '../extractor/puppeteer.extractor';
 import { societeComInformationReferential } from '../referential/societe-com.referential';
-import { FakeInformationProvider } from './fake.provider';
 import { SocieteComInformationProvider } from './societe-com.provider';
 
 describe('Societe com provider', () => {
+  jest.setTimeout(60000);
   let crawler: InformationCrawler;
   let provider: InformationProvider;
   let extractor: InformationExtractor;
 
   beforeEach(() => {
     crawler = new PuppeteerInformationCrawler();
-    extractor = new PuppeteerInformationExtractor(societeComInformationReferential, crawler);
+    extractor = new PuppeteerInformationExtractor(
+      societeComInformationReferential,
+      crawler,
+    );
     provider = new SocieteComInformationProvider(extractor, crawler);
   });
   it('should retrieve all aimed information on page for specified company', async () => {
     const companyName = '365Talents';
-    const companyInformations = CompanyInformationsFixtures.simpleSocieteCom365Talents;
-    const company = await provider.getCompany(companyName);
-
-    const expectedCompany = new Company(
+    const expectedCompanyInformations =
+      CompanyInformationsFixtures.simpleSocieteCom365Talents;
+    const companyInformations = await provider.getCompanyInformations(
       companyName,
-      companyInformations.map((elem) => {
-        return new CompanyInformation(elem.property, elem.content);
-      })
     );
 
-    expect(company).toEqual(expectedCompany);
+    expect(companyInformations).toEqual(expectedCompanyInformations);
   });
 });
