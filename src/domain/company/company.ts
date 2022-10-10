@@ -1,7 +1,10 @@
 import { CompanyInformation } from './company-informations/company-information';
 export type CompanyInformations = { [key: string]: string };
 export class Company {
-  constructor(public readonly name: string, private informations: CompanyInformation[]) {}
+  constructor(
+    public readonly name: string,
+    private informations: CompanyInformation[],
+  ) {}
 
   get companyInformations() {
     return this.informations;

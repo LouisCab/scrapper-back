@@ -23,16 +23,18 @@ describe('Puppeteer extractor', () => {
 
   beforeAll(async () => {
     crawler = new PuppeteerInformationCrawler();
-    extractor = new PuppeteerInformationExtractor(societeComInformationReferential, crawler);
+    extractor = new PuppeteerInformationExtractor(
+      societeComInformationReferential,
+      crawler,
+    );
     await initCrawler();
   });
 
   it('should retrieve all aimed information', async () => {
-    const expectedCompanyInformations = CompanyInformationsFixtures.simpleSocieteCom365Talents.map(
-      (elem) => {
+    const expectedCompanyInformations =
+      CompanyInformationsFixtures.simpleSocieteCom365Talents.map((elem) => {
         return new CompanyInformation(elem.property, elem.content);
-      }
-    );
+      });
 
     const companyInformations = await extractor.extractCompanyInformations();
     expect(companyInformations).toEqual(expectedCompanyInformations);

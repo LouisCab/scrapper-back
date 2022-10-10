@@ -6,7 +6,7 @@ import { InformationReferential } from '../../domain/referential';
 export class PuppeteerInformationExtractor extends InformationExtractor {
   constructor(
     private readonly referential: InformationReferential,
-    private readonly crawler: InformationCrawler
+    private readonly crawler: InformationCrawler,
   ) {
     super();
   }
@@ -15,10 +15,13 @@ export class PuppeteerInformationExtractor extends InformationExtractor {
     for (const rubric of this.referential.rubrics) {
       const content = await this.crawler.getElementValue(
         rubric.selector,
-        rubric.htmlMarkupAttribute
+        rubric.htmlMarkupAttribute,
       );
 
-      const companyInformation = new CompanyInformation(rubric.property, content);
+      const companyInformation = new CompanyInformation(
+        rubric.property,
+        content,
+      );
       if (rubric.regexExtractor) {
         companyInformation.refineContent(rubric.regexExtractor);
       }

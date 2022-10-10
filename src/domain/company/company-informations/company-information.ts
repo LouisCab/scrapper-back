@@ -15,7 +15,9 @@ export class CompanyInformation {
   refineContent(regex: RegExp) {
     const extracted = this.content.match(regex);
     if (extracted === null) {
-      throw new Error(`Cannot refine "${this.content}" for ${this.property} with ${regex}`);
+      throw new Error(
+        `Cannot refine "${this.content}" for ${this.property} with ${regex}`,
+      );
     }
     this.content = extracted[0];
   }

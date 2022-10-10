@@ -2,11 +2,14 @@ import { Company } from './company';
 import { CompanyInformation } from './company-informations/company-information';
 
 describe('Company test', () => {
-  const companyInformation = new CompanyInformation('firstProperty', 'value of first property');
+  const companyInformation = new CompanyInformation(
+    'firstProperty',
+    'value of first property',
+  );
   const company = new Company('TestCompany', [companyInformation]);
   const newProperty: CompanyInformation = new CompanyInformation(
     'second-property',
-    'value of second property'
+    'value of second property',
   );
   it('should add information to existing company informations', () => {
     company.add([newProperty]);

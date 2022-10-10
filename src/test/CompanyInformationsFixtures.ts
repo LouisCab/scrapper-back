@@ -26,7 +26,13 @@ export class CompanyInformationsFixtures {
     { property: 'category', content: 'Médias' },
     { property: 'rcsStatus', content: 'INSCRITE' },
     { property: 'inseeStatus', content: 'INSCRITE' },
-    { property: 'rcsImmatriculationDate', content: 'Immatriculée au RCS le 25-06-2015' },
-    { property: 'inseeRegistrationDate', content: "Enregistrée à l'INSEE le 26-05-2015" },
+    {
+      property: 'rcsImmatriculationDate',
+      content: 'Immatriculée au RCS le 25-06-2015',
+    },
+    {
+      property: 'inseeRegistrationDate',
+      content: "Enregistrée à l'INSEE le 26-05-2015",
+    },
   ];
 }

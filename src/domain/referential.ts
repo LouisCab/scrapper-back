@@ -8,7 +8,9 @@ export type InformationRubricDefinition = {
 export type InformationReferentialDefinition = InformationRubricDefinition[];
 
 export class InformationReferential {
-  constructor(private readonly referentialRubrics: InformationReferentialDefinition) {}
+  constructor(
+    private readonly referentialRubrics: InformationReferentialDefinition,
+  ) {}
   get rubrics() {
     return this.referentialRubrics;
   }

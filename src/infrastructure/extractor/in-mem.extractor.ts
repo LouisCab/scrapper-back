@@ -12,12 +12,17 @@ export class InMemInformationExtractor extends InformationExtractor {
   setCompanyInformation(company: Company) {
     const informations = this.storage.get(company.name);
     if (informations) {
-      this.storage.set(company.name, [...company.companyInformations, ...informations]);
+      this.storage.set(company.name, [
+        ...company.companyInformations,
+        ...informations,
+      ]);
     }
     this.storage.set(company.name, company.companyInformations);
   }
 
-  async extractCompanyInformations(companyName: string): Promise<CompanyInformation[]> {
+  async extractCompanyInformations(
+    companyName: string,
+  ): Promise<CompanyInformation[]> {
     const gatheredElement = this.storage.get(companyName);
     const companyInformations: CompanyInformation[] = [];
 

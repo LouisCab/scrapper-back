@@ -27,13 +27,20 @@ describe('Extractor', () => {
     const newCompany = new Company('new company', [companyInformation]);
     extractor.setCompanyInformation(newCompany);
 
-    const companyInformations = await extractor.extractCompanyInformations('company test');
+    const companyInformations = await extractor.extractCompanyInformations(
+      'company test',
+    );
     expect(companyInformations.length).toEqual(1);
   });
   it('should get informations from a specified referential', async () => {
-    const notExistingInReferential = new CompanyInformation('notExisting', 'value');
+    const notExistingInReferential = new CompanyInformation(
+      'notExisting',
+      'value',
+    );
     company.add([notExistingInReferential]);
-    const companyInformations = await extractor.extractCompanyInformations('company test');
+    const companyInformations = await extractor.extractCompanyInformations(
+      'company test',
+    );
 
     expect(companyInformations.length).toEqual(1);
     expect(companyInformations[0]).toEqual(companyInformation);

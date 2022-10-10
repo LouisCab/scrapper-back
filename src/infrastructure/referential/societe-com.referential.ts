@@ -3,7 +3,8 @@ import { InformationReferential } from '../../domain/referential';
 export const societeComInformationReferential = new InformationReferential([
   {
     htmlMarkupAttribute: 'innerText',
-    selector: '#rensjur > tbody > tr:nth-child(1) > td.flex.space-between.flex-wrap',
+    selector:
+      '#rensjur > tbody > tr:nth-child(1) > td.flex.space-between.flex-wrap',
     property: 'creationDate',
     regexExtractor: /([\d|-]+)/,
   },
@@ -50,7 +51,8 @@ export const societeComInformationReferential = new InformationReferential([
   },
   {
     htmlMarkupAttribute: 'innerText',
-    selector: '#rensjur > tbody > tr:nth-child(16) > td.flex.space-between.flex-wrap > div > span',
+    selector:
+      '#rensjur > tbody > tr:nth-child(16) > td.flex.space-between.flex-wrap > div > span',
     property: 'inseeStatus',
   },
   {

@@ -23,15 +23,16 @@ describe('Information provider', () => {
 
   it('should show error if there is no information gathered for specified company', async () => {
     await expect(async () => {
-      await provider.getCompany('company not settled');
+      await provider.getCompanyInformations('company not settled');
     }).rejects.toThrowError(Error);
   });
   it('should get informations for specified company', async () => {
     const newCompany = new Company('new company', [companyInformation]);
     extractor.setCompanyInformation(newCompany);
 
-    const company = await provider.getCompany('company test');
-    expect(company.companyInformations.length).toEqual(1);
-    expect(company.name).toEqual('company test');
+    const companyInformations = await provider.getCompanyInformations(
+      'company test',
+    );
+    expect(companyInformations.length).toEqual(1);
   });
 });
