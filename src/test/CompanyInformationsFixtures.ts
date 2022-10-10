@@ -2,13 +2,12 @@ export class CompanyInformationsFixtures {
   static simpleLinkedin365Talents = [
     {
       property: 'website',
-      content:
-        'https://www.linkedin.com/redir/redirect?url=https%3A%2F%2Fwww%2E365talents%2Ecom%2F&urlhash=TuEc&trk=about_website',
+      content: 'https://www.365talents.com/',
     },
     { property: 'activitySector', content: 'Développement de logiciels' },
     { property: 'companySize', content: '51-200 employés' },
     { property: 'headOfficeLocation', content: 'Lyon, Auvergne-Rhone-Alpes' },
-    { property: 'employeeOnLinkedin', content: 'Voir les 70 employés' },
+    { property: 'employeeOnLinkedin', content: '72 sur LinkedIn' },
     {
       property: 'logo',
       content:

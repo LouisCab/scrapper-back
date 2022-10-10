@@ -132,26 +132,8 @@ export class PuppeteerInformationCrawler implements InformationCrawler {
       await this.browser.close();
       throw new NoResultForInput();
     }
+    await this.page.waitForSelector(selector);
+    await this.page.waitForNavigation();
     await this.page.click(selector);
-  }
-
-  async getElementValue(
-    selector: string,
-    htmlMarkupAttribute: string,
-  ): Promise<string> {
-    // TODO catch ?
-    await this.page.waitForSelector(selector).catch((e) => {
-      console.log('e', e);
-    });
-    const element = await this.page.$(selector);
-    if (element === null) {
-      throw new ElementNotFoundError(
-        `Element ${selector} was not found for ${this.page.url}`,
-      );
-    }
-    const value = (await (
-      await element.getProperty(htmlMarkupAttribute)
-    ).jsonValue()) as string;
-    return value;
   }
 }

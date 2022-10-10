@@ -14,12 +14,14 @@ export class CompanyInformation {
 
   refineContent(regex: RegExp) {
     const extracted = this.content.match(regex);
+    console.log('regex : ', regex);
+    console.log('EXTRACTED = ', extracted[0]);
     if (extracted === null) {
       throw new Error(
         `Cannot refine "${this.content}" for ${this.property} with ${regex}`,
       );
     }
-    this.content = extracted[0];
+    this.content = extracted[0].trim();
   }
 
   build() {
