@@ -18,12 +18,10 @@ export class SocieteComPuppeteerInformationCrawler extends PuppeteerInformationC
     selector: string,
     htmlMarkupAttribute: string,
   ): Promise<string> {
-    await this.page.waitForSelector(selector);
     const element = await this.page.$(selector);
     if (element === null) {
-      throw new ElementNotFoundError(
-        `Element ${selector} was not found for ${this.page.url}`,
-      );
+      console.warn(`Element ${selector} was not found for ${this.page.url()}`);
+      return;
     }
     const value = (await (
       await element.getProperty(htmlMarkupAttribute)

@@ -18,6 +18,9 @@ export class SocieteComPuppeteerInformationExtractor extends InformationExtracto
         rubric.htmlMarkupAttribute,
       );
 
+      if (!content) {
+        return;
+      }
       const companyInformation = new CompanyInformation(
         rubric.property,
         content,

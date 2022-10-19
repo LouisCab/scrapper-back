@@ -25,8 +25,12 @@ export class GetCompanyInformationsService {
     const company = new Company(companyName, providerCompanyInformations);
 
     for (const provider of this.providers) {
-      const elements = await provider.getCompanyInformations(companyName);
-      company.add(elements);
+      try {
+        const elements = await provider.getCompanyInformations(companyName);
+        company.add(elements);
+      } catch (e) {
+        throw new Error(e.message);
+      }
     }
 
     if (company.providerCompanyInformations.size === 0) {
