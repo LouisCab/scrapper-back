@@ -1,4 +1,5 @@
 import * as puppeteer from 'puppeteer';
+import { Browser, Page } from 'puppeteer';
 import { InformationCrawler } from '../../domain/interfaces/crawler.interface';
 
 export class InfrastructureError extends Error {
@@ -60,8 +61,8 @@ export class ExtractingContentFailure extends InfrastructureError {
   }
 }
 export class PuppeteerInformationCrawler implements InformationCrawler {
-  private browser: puppeteer.Browser;
-  protected page: puppeteer.Page;
+  private browser: Browser;
+  protected page: Page;
   private elements: Promise<string>;
 
   get puppeteerPage() {
@@ -76,7 +77,7 @@ export class PuppeteerInformationCrawler implements InformationCrawler {
     this.elements = elements;
   }
 
-  set setPuppeteerPage(page: puppeteer.Page) {
+  set setPuppeteerPage(page: Page) {
     this.page = page;
   }
 
@@ -89,7 +90,7 @@ export class PuppeteerInformationCrawler implements InformationCrawler {
     }
 
     const puppeteerPage = await this.browser.newPage();
-    // await puppeteerPage.setCacheEnabled(false);
+    await puppeteerPage.setCacheEnabled(false);
     this.setPuppeteerPage = puppeteerPage;
     await this.page.setUserAgent(
       'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36',

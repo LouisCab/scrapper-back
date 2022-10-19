@@ -10,7 +10,10 @@ describe('Information provider', () => {
   let extractor: InMemInformationExtractor;
   let referential: InformationReferential;
   const companyInformation = new CompanyInformation('key', 'value');
-  const company = new Company('company test', [companyInformation]);
+  const providerCompantInformation = new Map([
+    ['fakeProvider', [companyInformation]],
+  ]);
+  const company = new Company('company test', providerCompantInformation);
 
   beforeEach(() => {
     referential = new InformationReferential([
@@ -27,12 +30,12 @@ describe('Information provider', () => {
     }).rejects.toThrowError(Error);
   });
   it('should get informations for specified company', async () => {
-    const newCompany = new Company('new company', [companyInformation]);
+    const newCompany = new Company('new company', providerCompantInformation);
     extractor.setCompanyInformation(newCompany);
 
-    const companyInformations = await provider.getCompanyInformations(
+    const providerCompanyInformations = await provider.getCompanyInformations(
       'company test',
     );
-    expect(companyInformations.length).toEqual(1);
+    expect(Array.from(providerCompanyInformations.values()).length).toEqual(1);
   });
 });

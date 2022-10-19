@@ -28,10 +28,14 @@ describe('Societe com provider', () => {
       CompanyInformationsFixtures.simpleSocieteCom365Talents.map((elem) => {
         return new CompanyInformation(elem.property, elem.content);
       });
+
+    const expectedProvider = new Map([
+      ['SocieteComInformationProvider', expectedCompanyInformations],
+    ]);
     const companyInformations = await provider.getCompanyInformations(
       companyName,
     );
 
-    expect(companyInformations).toEqual(expectedCompanyInformations);
+    expect(companyInformations).toEqual(expectedProvider);
   });
 });

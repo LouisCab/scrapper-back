@@ -33,15 +33,15 @@ describe('Linkedin com provider', () => {
       companyName,
     );
 
-    const filtered = companyInformations.filter((companyInformation) => {
-      companyInformation.informationProperty !== 'logo';
-    });
-    const expectedFiltered = expectedCompanyInformations.filter(
-      (companyInformation) => {
-        companyInformation.informationProperty !== 'logo';
-      },
-    );
+    // const filtered = companyInformations.filter((companyInformation) => {
+    //   companyInformation.informationProperty !== 'logo';
+    // });
+    // const expectedFiltered = expectedCompanyInformations.filter(
+    //   (companyInformation) => {
+    //     companyInformation.informationProperty !== 'logo';
+    //   },
+    // );
     // Exclude logo href of the test because url is not stable
-    expect(filtered).toEqual(expectedFiltered);
+    expect(companyInformations).toEqual(expectedCompanyInformations);
   });
 });

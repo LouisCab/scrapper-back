@@ -1,26 +1,29 @@
-import { CompanyInformation } from './company-informations/company-information';
-export type CompanyInformations = { [key: string]: string };
+import { ProviderCompanyInformation } from '../interfaces/provider.interface';
+
 export class Company {
   constructor(
     public readonly name: string,
-    private informations: CompanyInformation[],
+    private informations: ProviderCompanyInformation,
   ) {}
 
-  get companyInformations() {
+  get providerCompanyInformations() {
     return this.informations;
   }
-  add(companyInformation: CompanyInformation[]) {
-    this.informations = [...this.informations, ...companyInformation];
-  }
 
-  build(): CompanyInformations {
-    let companyInformations: CompanyInformations = {};
-    const elements = this.informations.map((information) => {
-      return information.build();
-    });
-    for (const element of elements) {
-      companyInformations = { ...companyInformations, ...element };
+  add(providerInformations: ProviderCompanyInformation) {
+    for (const [
+      provider,
+      companyInformations,
+    ] of providerInformations.entries()) {
+      if (this.informations.has(provider)) {
+        const existingCompanyInformations = this.informations.get(provider);
+        this.informations.set(provider, [
+          ...companyInformations,
+          ...existingCompanyInformations,
+        ]);
+      } else {
+        this.informations.set(provider, companyInformations);
+      }
     }
-    return { ...companyInformations };
   }
 }

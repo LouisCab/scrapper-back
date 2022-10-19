@@ -21,19 +21,19 @@ const crawlers = [
   },
 ];
 
-const linkedinProvider = {
-  provide: LinkedinInformationProvider,
-  inject: [LinkedinPuppeteerInformationCrawler],
-  useFactory: (crawler: LinkedinPuppeteerInformationCrawler) => {
-    return new LinkedinInformationProvider(
-      new LinkedinPuppeteerInformationExtractor(
-        linkedinInformationReferential,
-        crawler,
-      ),
-      crawler,
-    );
-  },
-};
+// const linkedinProvider = {
+//   provide: LinkedinInformationProvider,
+//   inject: [LinkedinPuppeteerInformationCrawler],
+//   useFactory: (crawler: LinkedinPuppeteerInformationCrawler) => {
+//     return new LinkedinInformationProvider(
+//       new LinkedinPuppeteerInformationExtractor(
+//         linkedinInformationReferential,
+//         crawler,
+//       ),
+//       crawler,
+//     );
+//   },
+// };
 
 const societeComProvider = {
   provide: SocieteComInformationProvider,
@@ -51,12 +51,12 @@ const societeComProvider = {
 
 const getCompanyInformationsService: FactoryProvider = {
   provide: GetCompanyInformationsService,
-  inject: [LinkedinInformationProvider, SocieteComInformationProvider],
+  inject: [SocieteComInformationProvider], //LinkedinInformationProvider,
   useFactory: (
-    linkedin: LinkedinInformationProvider,
+    // linkedin: LinkedinInformationProvider,
     societeCom: SocieteComInformationProvider,
   ) => {
-    return new GetCompanyInformationsService([linkedin, societeCom]);
+    return new GetCompanyInformationsService([societeCom]); //linkedin,
   },
 };
 
@@ -65,7 +65,7 @@ const getCompanyInformationsService: FactoryProvider = {
   controllers: [GetCompanyInformationsController],
   providers: [
     ...crawlers,
-    linkedinProvider,
+    // linkedinProvider,
     societeComProvider,
     getCompanyInformationsService,
   ],

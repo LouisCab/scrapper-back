@@ -21,8 +21,4 @@ export class CompanyInformation {
     }
     this.content = extracted[0].trim();
   }
-
-  build() {
-    return { [this.property]: this.content };
-  }
 }

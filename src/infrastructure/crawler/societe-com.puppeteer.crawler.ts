@@ -18,10 +18,7 @@ export class SocieteComPuppeteerInformationCrawler extends PuppeteerInformationC
     selector: string,
     htmlMarkupAttribute: string,
   ): Promise<string> {
-    // TODO catch ?
-    await this.page.waitForSelector(selector).catch((e) => {
-      console.log('e', e);
-    });
+    await this.page.waitForSelector(selector);
     const element = await this.page.$(selector);
     if (element === null) {
       throw new ElementNotFoundError(
